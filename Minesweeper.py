@@ -217,31 +217,34 @@ def youWin(board):
 def playGame(board):
     gameOver = False
     while(gameOver!=True):
-        x = input("Type x coordinate: ")
-        y = input("Type y coordinate: ")
-        #checks for legal input
-        if x>0 and x<=numX and y>0 and y<=numY:
-            cSpace = board[(y-1)*numY + x-1]
-            cSpace.revealed = True
-            #if a bomb space is typed, trigger game over.
-            if(isinstance(cSpace, bombSpace)):
-                gameOver=True
-                revealBoard(board)
-                print("You hit a bomb! Game Over")
-            #if a 0 space is revealed, reveal all its neighbors
-            elif cSpace.number==0:
-                revealNumbers(board, cSpace)
-                printBoard(board)
-            #if no number spaces remain
-            elif youWin(board):
-                gameOver=True
-                revealBoard(board)
-                print("Congratulations! You win!")
+        try:
+            x = int(input("Type x coordinate: "))
+            y = int(input("Type y coordinate: "))
+            #checks for legal input
+            if x>0 and x<=numX and y>0 and y<=numY:
+                cSpace = board[(y-1)*numY + x-1]
+                cSpace.revealed = True
+                #if a bomb space is typed, trigger game over.
+                if(isinstance(cSpace, bombSpace)):
+                    gameOver=True
+                    revealBoard(board)
+                    print("You hit a bomb! Game Over")
+                #if a 0 space is revealed, reveal all its neighbors
+                elif cSpace.number==0:
+                    revealNumbers(board, cSpace)
+                    printBoard(board)
+                #if no number spaces remain
+                elif youWin(board):
+                    gameOver=True
+                    revealBoard(board)
+                    print("Congratulations! You win!")
+                else:
+                    printBoard(board)
             else:
-                printBoard(board)
-        else:
-            print("Indices out of bound, please try again")
-
+                print("Indices out of bound, please try again")
+        except ValueError:
+            print("Please enter valid number")
+                
 def startGame():
     global numX
     global numY
