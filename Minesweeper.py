@@ -77,10 +77,7 @@ def createBoard(bSpaces, nSpaces):
 #returns the number of the tile or an x for all revealed spaces, and a ? for unrevealed spaces
 def getType(unknownSpace):
     if unknownSpace.revealed:
-        if isinstance(unknownSpace, bombSpace):
-            return unknownSpace.showContent()
-        else:
-            return unknownSpace.showContent()
+        return unknownSpace.showContent()
     else:
         return '?'
 
