@@ -248,7 +248,7 @@ def playGame(board):
 def startGame():
     global numX
     global numY
-    print("Welcome to Minesweeper! Type an x and y coordinate to reveal it's space.")
+    print("Welcome to Minesweeper! Type an x and y coordinate to reveal its space.")
     numX = 9
     numY = 9
     bSpaces = 10
